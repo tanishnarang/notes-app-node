@@ -1,5 +1,5 @@
 import fs from "fs";
-
+import chalk from "chalk";
 const getNote = function () {
   console.log("your notes file.");
 };
@@ -17,9 +17,26 @@ const addingNote = function (title, body) {
     });
 
     saveNote(notes);
-    console.log("new note added!");
+    console.log(chalk.green.inverse("new note added!"));
   } else {
-    console.log("note already taken!");
+    console.log(chalk.red.inverse("title already taken!"));
+  }
+};
+
+const removeNote = function (title) {
+  const notes = loadNotes();
+  // const removablenote = notes.findIndex((item) => item.title === title);
+  // if (removablenote !== -1) {
+  //   notes.splice(removablenote, 1);
+  //   saveNote(notes);
+  //   console.log("note removed successfully!");
+  // }
+  const updatedNotes = notes.filter((item) => item.title !== title);
+  if (updatedNotes.length < notes.length) {
+    saveNote(updatedNotes);
+    console.log(chalk.green.inverse("note removed successfully!"));
+  } else {
+    console.log(chalk.red.inverse("note not found!"));
   }
 };
 
@@ -38,4 +55,4 @@ const loadNotes = function () {
   }
 };
 
-export default { getNote, addingNote };
+export default { getNote, addingNote, removeNote };

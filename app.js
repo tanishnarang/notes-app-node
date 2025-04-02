@@ -5,7 +5,7 @@ import notes from "./notes.js";
 yargs(hideBin(process.argv))
   .command(
     "add",
-    "Adding the notes!",
+    "Add a note!",
     {
       title: {
         describe: "note tittle",
@@ -20,6 +20,20 @@ yargs(hideBin(process.argv))
     },
     function (argv) {
       notes.addingNote(argv.title, argv.body);
+    }
+  )
+  .command(
+    "remove",
+    "remove the note!",
+    {
+      title: {
+        describe: "note title",
+        demandOption: true,
+        type: "string",
+      },
+    },
+    function (argv) {
+      notes.removeNote(argv.title);
     }
   )
   .help().argv;
