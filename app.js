@@ -1,23 +1,25 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import notes from "./notes.js";
+
 yargs(hideBin(process.argv))
   .command(
-    "name",
-    "listing commands!",
+    "add",
+    "Adding the notes!",
     {
-      n: {
-        describe: "name",
+      title: {
+        describe: "note tittle",
         demandOption: true,
         type: "string",
       },
-      l: {
-        describe: "last name",
+      body: {
+        describe: "note body",
         demandOption: true,
         type: "string",
       },
     },
     function (argv) {
-      console.log("hello", argv.n, argv.l);
+      notes.addingNote(argv.title, argv.body);
     }
   )
   .help().argv;
