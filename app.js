@@ -33,4 +33,16 @@ yargs(hideBin(process.argv))
     (argv) => notes.removeNote(argv.title)
   )
   .command("list", "listing of all the notes", () => notes.getNote())
+  .command(
+    "read",
+    "reading the code",
+    {
+      title: {
+        describe: "note title",
+        demandOption: true,
+        type: "string",
+      },
+    },
+    (argv) => notes.readTheNote(argv.title)
+  )
   .help().argv;

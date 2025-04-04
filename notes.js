@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs, { read } from "fs";
 import chalk from "chalk";
 const getNote = () => {
   console.log(chalk.white.inverse("your notes list"));
@@ -50,4 +50,13 @@ const loadNotes = () => {
   }
 };
 
-export default { getNote, addingNote, removeNote };
+const readTheNote = (title) => {
+  const notes = loadNotes();
+  const updatedNote = notes.find((item) => item.title === title);
+  if (updatedNote) {
+    console.log(chalk.inverse(updatedNote.title));
+    console.log(updatedNote.body);
+  } else console.log(chalk.red.inverse("no note found!"));
+};
+
+export default { getNote, addingNote, removeNote, readTheNote };
