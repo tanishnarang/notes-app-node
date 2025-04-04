@@ -1,6 +1,11 @@
 import fs from "fs";
 import chalk from "chalk";
-const getNote = () => console.log("your notes file.");
+const getNote = () => {
+  console.log(chalk.white.inverse("your notes list"));
+  const notes = loadNotes();
+  notes.forEach((note) => console.log(note.title));
+};
+
 const addingNote = (title, body) => {
   const notes = loadNotes();
 
