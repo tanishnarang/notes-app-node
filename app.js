@@ -18,9 +18,7 @@ yargs(hideBin(process.argv))
         type: "string",
       },
     },
-    function (argv) {
-      notes.addingNote(argv.title, argv.body);
-    }
+    (argv) => notes.addingNote(argv.title, argv.body)
   )
   .command(
     "remove",
@@ -32,8 +30,6 @@ yargs(hideBin(process.argv))
         type: "string",
       },
     },
-    function (argv) {
-      notes.removeNote(argv.title);
-    }
+    (argv) => notes.removeNote(argv.title)
   )
   .help().argv;

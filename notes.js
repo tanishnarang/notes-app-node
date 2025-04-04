@@ -1,14 +1,10 @@
 import fs from "fs";
 import chalk from "chalk";
-const getNote = function () {
-  console.log("your notes file.");
-};
-const addingNote = function (title, body) {
+const getNote = () => console.log("your notes file.");
+const addingNote = (title, body) => {
   const notes = loadNotes();
 
-  const duplicateNote = notes.filter(function (note) {
-    return note.title === title;
-  });
+  const duplicateNote = notes.filter((note) => note.title === title);
 
   if (duplicateNote.length === 0) {
     notes.push({
@@ -23,14 +19,8 @@ const addingNote = function (title, body) {
   }
 };
 
-const removeNote = function (title) {
+const removeNote = (title) => {
   const notes = loadNotes();
-  // const removablenote = notes.findIndex((item) => item.title === title);
-  // if (removablenote !== -1) {
-  //   notes.splice(removablenote, 1);
-  //   saveNote(notes);
-  //   console.log("note removed successfully!");
-  // }
   const updatedNotes = notes.filter((item) => item.title !== title);
   if (updatedNotes.length < notes.length) {
     saveNote(updatedNotes);
@@ -40,12 +30,12 @@ const removeNote = function (title) {
   }
 };
 
-const saveNote = function (note) {
+const saveNote = (note) => {
   const data = JSON.stringify(note);
   fs.writeFileSync("notes.json", data);
 };
 
-const loadNotes = function () {
+const loadNotes = () => {
   try {
     const getNotes = fs.readFileSync("notes.json");
     const dataNotes = getNotes.toString();
